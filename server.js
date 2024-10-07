@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -21,6 +20,13 @@ connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes); // Prefix the auth routes with /api/auth
+
+// Add a new route that uses res.write
+app.get('/api/message', (req, res) => {
+  res.write('First statement\n'); // Write first statement
+  res.write('This is another part of the response.\n'); // Additional writes (optional)
+  res.end('Response complete'); // End the response
+});
 
 // Start the server
 const PORT = process.env.PORT || 5000;
